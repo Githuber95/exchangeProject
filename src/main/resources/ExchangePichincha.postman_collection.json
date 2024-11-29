@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "c2c136e5-95ad-4a63-bbe4-18006b26f20f",
+		"name": "ExchangePichincha",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4735145"
+	},
+	"item": [
+		{
+			"name": "findExchange",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/supportApi/find?monedaOrigen=PEN&monedaDestino=USD",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"supportApi",
+						"find"
+					],
+					"query": [
+						{
+							"key": "monedaOrigen",
+							"value": "PEN"
+						},
+						{
+							"key": "monedaDestino",
+							"value": "USD"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generate",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"moneda_origen\":\"USD\",\n    \"moneda_destino\": \"PEN\",\n    \"monto\": 34\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/experience/exchange",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"experience",
+						"exchange"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list Audit",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "registerExchange",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"moneda_origen\":\"EU\",\n    \"moneda_destino\":\"PEN\",\n    \"tipo_cambio\": 3.28\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/supportApi/registerExchange",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"supportApi",
+						"registerExchange"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateExchange",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"moneda_origen\":\"USD\",\n    \"moneda_destino\":\"PEN\",\n    \"tipo_cambio\": 3.28\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/supportApi/updateExchange",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"supportApi",
+						"updateExchange"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
