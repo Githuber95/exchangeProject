@@ -2,12 +2,14 @@ package com.pichincha.exchange.controller;
 
 import com.pichincha.exchange.model.dto.request.ExchangeRegisterDTO;
 import com.pichincha.exchange.model.dto.request.OperationRequestDTO;
+import com.pichincha.exchange.persistence.entity.Audit;
 import com.pichincha.exchange.persistence.entity.Exchange;
 import com.pichincha.exchange.persistence.entity.Operation;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import service.SupportService;
 
@@ -27,13 +29,19 @@ public class SupportController {
                 moneda_destino(monedaDestino).moneda_origen(monedaOrigen).build());
     }
 
+    @GetMapping("/listAudit")
+    public Flux<Audit> getRate(
+    ){
+        return supportService.listAudit();
+    }
+
     @PostMapping(value = "/registerExchange")
     public Mono<Void> registerExchange(@RequestBody ExchangeRegisterDTO exchange){
         return supportService.saveExchange(exchange);
     }
 
     @PostMapping(value = "/updateExchange")
-    public Mono<Void> updateExchange(@RequestBody ExchangeRegisterDTO exchange){
+    public Mono<Object> updateExchange(@RequestBody ExchangeRegisterDTO exchange){
         return supportService.updateExchange(exchange);
     }
 

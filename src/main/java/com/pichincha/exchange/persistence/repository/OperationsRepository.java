@@ -19,6 +19,6 @@ public interface OperationsRepository extends R2dbcRepository<Operation, Integer
     @Modifying
     @Query("INSERT INTO OPERATION (id_usuario, monto, moneda_origen, moneda_destino, monto_cambio, tipo_cambio) VALUES "
             + "(:#{#op.id_usuario}, :#{#op.monto}, :#{#op.moneda_origen}, :#{#op.moneda_destino}, :#{#op.monto_cambio}, :#{#op.tipo_cambio})")
-     Mono<Operation> save(Operation op);
+     Mono<Long> save(Operation op);
 
 }

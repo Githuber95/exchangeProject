@@ -26,8 +26,6 @@ import service.SupportService;
 public class ExperienceServiceImpl implements ExperienceService {
     @Autowired
     private SupportService supportService;
-    @Autowired
-    private ModelMapper modelMapper;
 
     @Autowired
     private ExternalApi externalApi;
@@ -38,19 +36,12 @@ public class ExperienceServiceImpl implements ExperienceService {
         NoSuchUserException notFound = new NoSuchUserException("No se encuentra el usuario", HttpStatus.NOT_FOUND);
 
         return externalApi.getExternalUser(operation.getId_usuario()).subscribeOn(Schedulers.immediate()).
-                switchIfEmpty(Mono.error(notFound)).//doOnSuccess()
+                switchIfEmpty(Mono.error(notFound)).
         zipWhen(u -> {
                     operation.setNombre_usuario(u.getName());
                     return supportService.saveOperation(operation)
                             .map(op -> ExchangeResponse.builder().symbol(op.getMoneda_destino())
                                     .amount(op.getMonto_cambio()).build());
                 }).map(Tuple2::getT2);
-        /*
-                map(u -> {
-                    operation.setNombre_usuario(u.getName());
-                    return supportService.saveOperation(operation)
-                            .map(op -> ExchangeResponse.builder().symbol(op.getMoneda_destino())
-                                    .amount(op.getMonto_cambio()).build());
-                }).flatMap(o -> o);*/
     }
 }

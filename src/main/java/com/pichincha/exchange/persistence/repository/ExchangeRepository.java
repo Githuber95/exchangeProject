@@ -18,7 +18,7 @@ public interface ExchangeRepository extends ReactiveCrudRepository<Exchange, Int
     //@Override
   //  <S extends Exchange> Mono<S> findOne(Example<S> example);
     @Query("UPDATE EXCHANGE SET tipo_cambio =:#{#cambio.tipo_cambio} WHERE" +
-            "moneda_origen =:#{#cambio.moneda_origen} AND moneda_destino =:#{#cambio.moneda_destino}")
+            " moneda_origen =:#{#cambio.moneda_origen} AND moneda_destino =:#{#cambio.moneda_destino}")
     Mono<Integer> update(@Param("cambio") Exchange cambio);
 
     @Query("SELECT e.moneda_destino, e.moneda_origen, e.tipo_cambio FROM EXCHANGE e WHERE moneda_origen =:#{#cambio.moneda_origen} AND" +

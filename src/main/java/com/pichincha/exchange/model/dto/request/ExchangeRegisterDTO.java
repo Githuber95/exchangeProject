@@ -12,7 +12,7 @@ import org.springframework.data.annotation.Id;
 @Builder
 @Data
 public class ExchangeRegisterDTO {
-
+    private Integer id;
     @NotBlank(message = "Ingrese la moneda de origen")
     private String moneda_origen;
     @NotBlank(message = "Ingrese la moneda de destino")
